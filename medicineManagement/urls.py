@@ -37,4 +37,7 @@ urlpatterns = [
                   # 都根据 mgr.urls 里面的 子路由表进行路由
                   path('api/mgr/', include('mgr.urls')),
 
+
+
+
               ] + static("/", document_root="./z_dist")
