@@ -1,3 +1,5 @@
+import traceback
+
 from django.http import JsonResponse
 from django.db.models import F
 from django.db import IntegrityError, transaction
@@ -98,3 +100,30 @@ def listorder(request):
             id2order[orderid]['medicines_name'] += ' | ' + one['medicines_name']
 
     return JsonResponse({'ret': 0, 'retlist': newlist})
+
+
+def deleteorder(request):
+    # 获取订单ID
+    oid = request.params['id']
+
+    try:
+
+        one = Order.objects.get(id=oid)
+        with transaction.atomic():
+
+            # 一定要先删除 OrderMedicine 里面的记录
+            OrderMedicine.objects.filter(order_id=oid).delete()
+            # 再删除订单记录
+            one.delete()
+
+        return JsonResponse({'ret': 0, 'id': oid})
+
+    except Order.DoesNotExist:
+        return JsonResponse({
+            'ret': 1,
+            'msg': f'id 为`{oid}`的订单不存在'
+        })
+
+    except:
+        err = traceback.format_exc()
+        return JsonResponse({'ret': 1, 'msg': err})
