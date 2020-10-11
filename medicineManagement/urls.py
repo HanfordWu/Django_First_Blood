@@ -13,27 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
 from sales.views import listorders
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # # 添加如下的路由记录
-    # path('sales/orders/', listorders),
-    #
+                  path('admin/', admin.site.urls),
+                  # # 添加如下的路由记录
+                  # path('sales/orders/', listorders),
+                  #
 
-    # 凡是 url 以 sales/  开头的，
-    # 都根据 sales.urls 里面的 子路由表进行路由
-    path('sales/', include('sales.urls')),
+                  # 凡是 url 以 sales/  开头的，
+                  # 都根据 sales.urls 里面的 子路由表进行路由
+                  path('sales/', include('sales.urls')),
 
-    # 凡是 url 以 sales/  开头的，
-    # 都根据 sales.urls 里面的 子路由表进行路由
-    path('sales/', include('sales.urls')),
+                  # 凡是 url 以 sales/  开头的，
+                  # 都根据 sales.urls 里面的 子路由表进行路由
+                  path('sales/', include('sales.urls')),
 
-    # 凡是 url 以 api/mgr  开头的，
-    # 都根据 mgr.urls 里面的 子路由表进行路由
-    path('api/mgr/', include('mgr.urls')),
+                  # 凡是 url 以 api/mgr  开头的，
+                  # 都根据 mgr.urls 里面的 子路由表进行路由
+                  path('api/mgr/', include('mgr.urls')),
 
-]
+              ] + static("/", document_root="./z_dist")
