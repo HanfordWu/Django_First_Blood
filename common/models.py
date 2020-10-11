@@ -12,3 +12,4 @@ class Customer(models.Model):
 
     # 地址
     address = models.CharField(max_length=200)
+

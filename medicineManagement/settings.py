@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 加入下面这行
+    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
