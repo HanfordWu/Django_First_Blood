@@ -28,9 +28,12 @@ urlpatterns = [
     # 都根据 sales.urls 里面的 子路由表进行路由
     path('sales/', include('sales.urls')),
 
-
     # 凡是 url 以 sales/  开头的，
     # 都根据 sales.urls 里面的 子路由表进行路由
     path('sales/', include('sales.urls')),
+
+    # 凡是 url 以 api/mgr  开头的，
+    # 都根据 mgr.urls 里面的 子路由表进行路由
+    path('api/mgr/', include('mgr.urls')),
 
 ]
