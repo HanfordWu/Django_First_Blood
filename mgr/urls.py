@@ -6,5 +6,6 @@ urlpatterns = [
 
     path('customers', customer.dispatcher),
     path('signout', sign_in_out.signout),
+    path('signin', sign_in_out.signin),
 
 ]
